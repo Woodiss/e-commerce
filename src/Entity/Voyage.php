@@ -4,13 +4,15 @@ namespace App\Entity;
 
 
 use App\Repository\VoyageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 // use de vich
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+// use Symfony\Component\HttpFoundation\File\File;
+// use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[Vich\Uploadable]
+// #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: VoyageRepository::class)]
 class Voyage
 {
@@ -25,11 +27,19 @@ class Voyage
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[Vich\UploadableField(mapping: 'voyages', fileNameProperty: 'image')]
-    private ?File $imageFile = null;
+    #[ORM\OneToMany(mappedBy: 'voyage', targetEntity: VoyageImage::class, orphanRemoval: true, cascade: ['persist'])]
+    private Collection $images;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    // #[Vich\UploadableField(mapping: 'voyages', fileNameProperty: 'image')]
+    // private ?File $imageFile = null;
+
+    // #[ORM\Column(length: 255)]
+    // private ?string $image = null;
 
 
     public function getId(): ?int
@@ -61,23 +71,53 @@ class Voyage
         return $this;
     }
 
-    public function setImageFile(?File $imageFile = null): void
+    // public function setImageFile(?File $imageFile = null): void
+    // {
+    //     $this->imageFile = $imageFile;
+    // }
+
+    // public function getImageFile(): ?File
+    // {
+    //     return $this->imageFile;
+    // }
+    // public function getImage()
+    // {
+    //     return $this->image;
+    // }
+
+    // public function setImage($image): static
+    // {
+    //     $this->image = $image;
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, VoyageImage>
+     */
+    public function getimages(): Collection
     {
-        $this->imageFile = $imageFile;
+        return $this->images;
     }
 
-    public function getImageFile(): ?File
+    public function addImage(VoyageImage $voyageImage): static
     {
-        return $this->imageFile;
-    }
-    public function getImage()
-    {
-        return $this->image;
+        if (!$this->images->contains($voyageImage)) {
+            $this->images->add($voyageImage);
+            $voyageImage->setVoyage($this);
+        }
+
+        return $this;
     }
 
-    public function setImage($image): static
+    public function removeImage(VoyageImage $voyageImage): static
     {
-        $this->image = $image;
+        if ($this->images->removeElement($voyageImage)) {
+            // set the owning side to null (unless already changed)
+            if ($voyageImage->getVoyage() === $this) {
+                $voyageImage->setVoyage(null);
+            }
+        }
 
         return $this;
     }
