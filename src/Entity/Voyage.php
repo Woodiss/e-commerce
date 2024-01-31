@@ -8,11 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-// use de vich
-// use Symfony\Component\HttpFoundation\File\File;
-// use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
-// #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: VoyageRepository::class)]
 class Voyage
 {
@@ -34,13 +29,6 @@ class Voyage
     {
         $this->images = new ArrayCollection();
     }
-
-    // #[Vich\UploadableField(mapping: 'voyages', fileNameProperty: 'image')]
-    // private ?File $imageFile = null;
-
-    // #[ORM\Column(length: 255)]
-    // private ?string $image = null;
-
 
     public function getId(): ?int
     {
@@ -71,31 +59,10 @@ class Voyage
         return $this;
     }
 
-    // public function setImageFile(?File $imageFile = null): void
-    // {
-    //     $this->imageFile = $imageFile;
-    // }
-
-    // public function getImageFile(): ?File
-    // {
-    //     return $this->imageFile;
-    // }
-    // public function getImage()
-    // {
-    //     return $this->image;
-    // }
-
-    // public function setImage($image): static
-    // {
-    //     $this->image = $image;
-
-    //     return $this;
-    // }
-
     /**
      * @return Collection<int, VoyageImage>
      */
-    public function getimages(): Collection
+    public function getImages(): Collection
     {
         return $this->images;
     }

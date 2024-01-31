@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+app_voyages_index:
+    path: '/'
+    controller: 'App\Controller\VoyageController::index'
+
+# app_cart_add:
+#     path: '/cart'
+#     controller: 'App\Controller\CartController::add'

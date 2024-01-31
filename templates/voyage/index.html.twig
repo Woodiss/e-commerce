@@ -20,11 +20,14 @@
             <tr>
                 <td>{{ voyage.id }}</td>
                 <td>{{ voyage.title }}</td>
-                <td>{{ voyage.description }}</td>
-                <td>{{ voyage.image }}</td>
+                <td>{{ voyage.description|raw }}</td>
+                <td>{% for image in voyage.getImages() %}
+                    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
+                {% endfor %}</td>
                 <td>
                     <a href="{{ path('app_voyage_show', {'id': voyage.id}) }}">show</a>
                     <a href="{{ path('app_voyage_edit', {'id': voyage.id}) }}">edit</a>
+                    <a href="{{ path('cart_add', {'id': voyage.id}) }}">add cart</a>
                 </td>
             </tr>
         {% else %}

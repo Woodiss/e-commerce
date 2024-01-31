@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voyage index{% endblock %}
+
+{% block body %}
+    <h1>panier</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Title</th>
+                <th>Description</th>
+                <th>ImageFile</th>
+                <th>quantité</th>
+                {# <th>total</th> #}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for element in data %}
+            <tr>
+                {# <td>{{ voyage.id }}</td> #}
+                <td>{{ element.voyage.title }}</td>
+                <td>{{ element.voyage.description|raw }}</td>
+                <td>{% for image in element.voyage.getImages() %}
+                    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
+                {% endfor %}</td>
+                <td>{{ element.quantity }}</td>
+                {# <td>{{ voyage.quantity * voyage.product.price }}</td> #}
+                <td>
+                    <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
+                    <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
+                    <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">supp</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfooter>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>prix €</td>
+                <td>
+                    <a href="{{ path('cart_empty') }}">vider le panier</a>
+                </td>
+            </tr>
+        </tfooter>
+    </table>
+{% endblock %}

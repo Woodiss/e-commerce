@@ -21,7 +21,12 @@
             </tr>
             <tr>
                 <th>ImageFile</th>
-                <td>{{ voyage.imageFile }}</td>
+                {# <td>{{ voyage.imageFile }}</td> #}
+                <td>
+                    {% for image in voyage.images %}
+                        <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>
