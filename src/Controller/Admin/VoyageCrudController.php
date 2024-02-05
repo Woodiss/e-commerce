@@ -7,6 +7,7 @@ use App\Form\VoyageImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -24,6 +25,7 @@ class VoyageCrudController extends AbstractCrudController
         return [
             // IdField::new('id'),
             TextField::new('title'),
+            IntegerField::new('price'),
             TextEditorField::new('description'),
             CollectionField::new('images')
                 ->setEntryType(VoyageImageType::class)

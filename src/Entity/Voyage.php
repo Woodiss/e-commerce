@@ -25,6 +25,9 @@ class Voyage
     #[ORM\OneToMany(mappedBy: 'voyage', targetEntity: VoyageImage::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $images;
 
+    #[ORM\Column]
+    private ?int $price = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -85,6 +88,18 @@ class Voyage
                 $voyageImage->setVoyage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }
