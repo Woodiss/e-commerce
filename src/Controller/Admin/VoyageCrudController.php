@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class VoyageCrudController extends AbstractCrudController
@@ -29,9 +30,10 @@ class VoyageCrudController extends AbstractCrudController
             TextEditorField::new('description'),
             CollectionField::new('images')
                 ->setEntryType(VoyageImageType::class)
-            // ImageField::new('image')
-            //     ->onlyOnIndex()
-            //     ->setBasePath('/images/voyages'),
+
+            // AssociationField::new('images')
+            // ->setTemplatePath('admin/fields/images.html.twig') // Chemin vers votre template personnalisé
+            // ->onlyOnIndex(), // Pour afficher seulement dans la liste, pas dans la vue détaillée
         ];
     }
     
