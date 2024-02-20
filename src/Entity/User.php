@@ -43,9 +43,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Orders::class)]
     private Collection $orders;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: DeliveryAdresse::class, orphanRemoval: true)]
+    private Collection $deliveryAdresses;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BillingAdresse::class, orphanRemoval: true)]
+    private Collection $billingAdresses;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->deliveryAdresses = new ArrayCollection();
+        $this->billingAdresses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,6 +186,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($order->getUser() === $this) {
                 $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DeliveryAdresse>
+     */
+    public function getDeliveryAdresses(): Collection
+    {
+        return $this->deliveryAdresses;
+    }
+
+    public function addDeliveryAdress(DeliveryAdresse $deliveryAdress): static
+    {
+        if (!$this->deliveryAdresses->contains($deliveryAdress)) {
+            $this->deliveryAdresses->add($deliveryAdress);
+            $deliveryAdress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDeliveryAdress(DeliveryAdresse $deliveryAdress): static
+    {
+        if ($this->deliveryAdresses->removeElement($deliveryAdress)) {
+            // set the owning side to null (unless already changed)
+            if ($deliveryAdress->getUser() === $this) {
+                $deliveryAdress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BillingAdresse>
+     */
+    public function getBillingAdresses(): Collection
+    {
+        return $this->billingAdresses;
+    }
+
+    public function addBillingAdress(BillingAdresse $billingAdress): static
+    {
+        if (!$this->billingAdresses->contains($billingAdress)) {
+            $this->billingAdresses->add($billingAdress);
+            $billingAdress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBillingAdress(BillingAdresse $billingAdress): static
+    {
+        if ($this->billingAdresses->removeElement($billingAdress)) {
+            // set the owning side to null (unless already changed)
+            if ($billingAdress->getUser() === $this) {
+                $billingAdress->setUser(null);
             }
         }
 

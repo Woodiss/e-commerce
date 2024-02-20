@@ -27,6 +27,12 @@ class Orders
     #[ORM\OneToMany(mappedBy: 'orders_id', targetEntity: OrdersDetails::class, orphanRemoval:true, cascade: ['persist'])]
     private Collection $ordersDetails;
 
+    #[ORM\ManyToOne(inversedBy: 'orders', cascade: ['persist'])]
+    private ?BillingAdresse $billingAdresse = null;
+
+    #[ORM\ManyToOne(inversedBy: 'orders', cascade: ['persist'])]
+    private ?deliveryAdresse $deliveryAdresse = null;
+
     public function __construct()
     {
         $this->ordersDetails = new ArrayCollection();
@@ -100,6 +106,30 @@ class Orders
                 $ordersDetail->setOrdersId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBillingAdresse(): ?BillingAdresse
+    {
+        return $this->billingAdresse;
+    }
+
+    public function setBillingAdresse(?BillingAdresse $billingAdresse): static
+    {
+        $this->billingAdresse = $billingAdresse;
+
+        return $this;
+    }
+
+    public function getDeliveryAdresse(): ?deliveryAdresse
+    {
+        return $this->deliveryAdresse;
+    }
+
+    public function setDeliveryAdresse(?deliveryAdresse $deliveryAdresse): static
+    {
+        $this->deliveryAdresse = $deliveryAdresse;
 
         return $this;
     }

@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Orders;
 use App\Entity\User;
+use App\Entity\Orders;
+use App\Form\OrdersType;
 use App\Entity\OrdersDetails;
+use App\Entity\BillingAdresse;
+use App\Entity\DeliveryAdresse;
 use App\Repository\VoyageRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -73,6 +77,33 @@ class OrdersController extends AbstractController
 
         return $this->render('orders/index.html.twig', [
             'controller_name' => 'OrdersController',
+        ]);
+    }
+
+    #[Route('/new', name: 'app_order_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $order = new Orders();
+        $deliveryAdresse = new DeliveryAdresse();
+        $billingAdresse = new BillingAdresse();
+
+        $form = $this->createForm(OrdersType::class, $order);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Sauvegardez les entités dans la base de données
+            $entityManager->persist($order);
+            $entityManager->persist($deliveryAdresse);
+            $entityManager->persist($billingAdresse);
+            $entityManager->flush();
+
+            // Redirigez vers une autre page ou effectuez une autre action
+            return $this->redirectToRoute('...'); // Remplacez ... par le nom de la route souhaitée
+        }
+
+        return $this->render('orders/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
