@@ -31,7 +31,7 @@ class Orders
     private ?BillingAdresse $billingAdresse = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders', cascade: ['persist'])]
-    private ?deliveryAdresse $deliveryAdresse = null;
+    private ?DeliveryAdresse $deliveryAdresse = null;
 
     public function __construct()
     {

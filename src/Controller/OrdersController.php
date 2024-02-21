@@ -83,27 +83,49 @@ class OrdersController extends AbstractController
     #[Route('/new', name: 'app_order_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // dd($this->getUser());
+        $user = $this->getUser();
+        if($user == null) {
+            return $this->redirectToRoute('app_voyage_index');
+        }
+
         $order = new Orders();
+
         $deliveryAdresse = new DeliveryAdresse();
+        $deliveryAdresse->setUser($user);
+
         $billingAdresse = new BillingAdresse();
+        $billingAdresse->setUser($user);
 
         $form = $this->createForm(OrdersType::class, $order);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // on remplit la commande
+
+            $firstLetterFirstname = substr($user->getFirstname(), 0, 1);
+            $firstLetterLastname = substr($user->getLastname(), 0, 1);
+            $currentDate = date('dmy');
+            $randomNumber = mt_rand(100, 999);
+            $ref = $randomNumber . $firstLetterLastname . $firstLetterFirstname . $currentDate;
+            $order->setUser($user);
+            $order->setReference($ref);
+            // dd($ref);
+            
             // Sauvegardez les entités dans la base de données
+            // $entityManager->persist($deliveryAdresse);
+            // $entityManager->persist($billingAdresse);
             $entityManager->persist($order);
-            $entityManager->persist($deliveryAdresse);
-            $entityManager->persist($billingAdresse);
             $entityManager->flush();
 
             // Redirigez vers une autre page ou effectuez une autre action
-            return $this->redirectToRoute('...'); // Remplacez ... par le nom de la route souhaitée
+            return $this->redirectToRoute('app_voyage_index'); // Remplacez ... par le nom de la route souhaitée
         }
 
         return $this->render('orders/new.html.twig', [
             'form' => $form->createView(),
+            // 'stripe_key' => $_ENV["STRIPE_KEY"],
         ]);
     }
 }

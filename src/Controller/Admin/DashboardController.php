@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Orders;
 use App\Entity\User;
 use App\Entity\Voyage;
 use App\Entity\VoyageImage;
@@ -36,6 +37,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('utilisateur', 'fa fa-comment', User::class),
             MenuItem::linkToCrud('Voyages', 'fa fa-plane', Voyage::class),
             MenuItem::linkToCrud('Voyages images', 'fa fa-user', VoyageImage::class),
+            MenuItem::linkToCrud('Commandes', 'fa fa-user', Orders::class),
         ];
     }
 }

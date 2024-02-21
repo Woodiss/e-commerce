@@ -34,6 +34,9 @@ class BillingAdresse
     #[ORM\OneToMany(mappedBy: 'billingAdresse', targetEntity: Orders::class)]
     private Collection $orders;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse = null;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -130,6 +133,18 @@ class BillingAdresse
                 $order->setBillingAdresse(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }

@@ -14,14 +14,15 @@ class BillingAdresseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('city')
-            ->add('postal_code')
             ->add('full_name')
+            ->add('adresse')
+            ->add('City')
+            ->add('postal_code')
             ->add('phone_number')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-'choice_label' => 'id',
-            ])
+            // ->add('user', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'id',
+            //     ])
         ;
     }
 

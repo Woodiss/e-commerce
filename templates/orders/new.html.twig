@@ -5,10 +5,12 @@
 {% block body %}
     <h1>New Order</h1>
     <p>aaaa</p>
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'id': 'checkout-form'}}) }}
     {{ form_row(form.deliveryAdresse) }}
     <p>bbbbb</p>
     {{ form_row(form.billingAdresse) }}
     {# Autres champs de formulaire pour Orders #}
     {{ form_end(form) }}
+
+
 {% endblock %}
