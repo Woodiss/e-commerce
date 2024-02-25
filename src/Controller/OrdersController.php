@@ -2,12 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Orders;
 use App\Form\OrdersType;
 use App\Entity\OrdersDetails;
-use App\Entity\BillingAdresse;
-use App\Entity\DeliveryAdresse;
 use App\Repository\VoyageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,29 +78,53 @@ class OrdersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_order_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SessionInterface $session, VoyageRepository $voyageRepository): Response
     {
         // dd($this->getUser());
         $user = $this->getUser();
         if($user == null) {
+            $this->addFlash('message', 'Vous devez être connecté pour continuer');
+            return $this->redirectToRoute('app_voyage_index');
+        }
+
+        $panier = $session->get('panier', []);
+        // dd($panier);
+
+        if ($panier === []) {
+            $this->addFlash('message', 'Votre panier est vide');
             return $this->redirectToRoute('app_voyage_index');
         }
 
         $order = new Orders();
-
-        $deliveryAdresse = new DeliveryAdresse();
-        $deliveryAdresse->setUser($user);
-
-        $billingAdresse = new BillingAdresse();
-        $billingAdresse->setUser($user);
-
         $form = $this->createForm(OrdersType::class, $order);
-
+        
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            // on remplit la commande
 
+            // boucle sur $panier
+            foreach ($panier as $item => $quantity) {
+                $orderDetails = new OrdersDetails();
+
+                // récup le voyage (find = récup par l'id)
+                $voyage = $voyageRepository->find($item);
+
+                $price = $voyage->getPrice();
+
+                // add chaque details
+                $orderDetails->setVoyagesId($voyage);
+                $orderDetails->setPrice($price);
+                $orderDetails->setQuantity($quantity);
+
+                // add de la ref
+                $order->addOrdersDetail($orderDetails);
+            }
+            
+            // set de user pour getBillingAdresse & getDeliveryAdresse
+            $order->getBillingAdresse()->setUser($user);
+            $order->getDeliveryAdresse()->setUser($user);
+
+            // création de la réf
             $firstLetterFirstname = substr($user->getFirstname(), 0, 1);
             $firstLetterLastname = substr($user->getLastname(), 0, 1);
             $currentDate = date('dmy');
@@ -111,16 +132,16 @@ class OrdersController extends AbstractController
             $ref = $randomNumber . $firstLetterLastname . $firstLetterFirstname . $currentDate;
             $order->setUser($user);
             $order->setReference($ref);
-            // dd($ref);
-            
+
             // Sauvegardez les entités dans la base de données
-            // $entityManager->persist($deliveryAdresse);
-            // $entityManager->persist($billingAdresse);
             $entityManager->persist($order);
             $entityManager->flush();
 
-            // Redirigez vers une autre page ou effectuez une autre action
-            return $this->redirectToRoute('app_voyage_index'); // Remplacez ... par le nom de la route souhaitée
+            // supp le panier avant de quitter
+            $session->remove('panier');
+
+            // Redirigez vers une autre page
+            return $this->redirectToRoute('app_voyage_index');
         }
 
         return $this->render('orders/new.html.twig', [
