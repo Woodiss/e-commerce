@@ -149,8 +149,8 @@ class DeliveryAdresse
         return $this;
     }    
     
-    // public function __toString()
-    // {
-    //     return $this->city . " " . $this->postal_code . " " . 
-    // }
+    public function __toString()
+    {
+        return $this->adresse . " " . $this->City . " " . $this->postal_code;
+    }
 }

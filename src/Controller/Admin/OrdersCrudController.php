@@ -27,7 +27,8 @@ class OrdersCrudController extends AbstractCrudController
             TextField::new('reference'),
             DateField::new('created_at'),
             // AssociationField::new('a')
-            AssociationField::new('deliveryAdresse')
+            AssociationField::new('deliveryAdresse'),
+            AssociationField::new('billingAdresse')
 
         ];
     }

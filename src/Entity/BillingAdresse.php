@@ -148,4 +148,9 @@ class BillingAdresse
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->adresse . " " . $this->city . " " . $this->postal_code;
+    }
 }
