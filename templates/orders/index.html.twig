@@ -1,20 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrdersController!{% endblock %}
+{% block title %}Hello OrdersController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="container">
+    
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/xampp/cours/e-commerce/src/Controller/OrdersController.php'|file_link(0) }}">src/Controller/OrdersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/xampp/cours/e-commerce/templates/orders/index.html.twig'|file_link(0) }}">templates/orders/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <h3 style="text-align: center;">HISTORIQUE DE VOS COMMANDES :</h3>
+        <div class="container-orders">
+
+            <section class="table">
+                <div class="table-head">
+                    <div>Date</div>
+                    <div>N° commande</div>
+                    <div>Montant</div>
+                    <div class="statut">Statut</div>
+                    <div>Détails</div>
+                </div>
+
+                <div class="content-orders">
+                    {% for order in orders %}
+                        <div class="order">
+                            <div>{{ order.createdAt|date("d/m/Y") }}</div>
+                            <div>{{ order.reference }}</div>
+                            <div>{{ order.total }}</div>
+                            <div class="statut">
+                                {% set dateLimite = "now"|date_modify("-5 days") %}
+                                {% if order.createdAt < dateLimite %}
+                                    <span>Commande livré</span>
+                                {% else %}
+                                    <span>En cours de livraison</span>
+                                {% endif %}
+                            </div>
+                            <div class="{{ order.id }}" onclick="toggle({{ order.id }})">
+                                <span>Détails</span>
+                                <img class="icons" src="{{ asset('images/images_site/svg_icons/chevron-down.svg') }}" alt="">
+                            </div>
+                        </div>
+                        <div class="id{{ order.id }} all-details">
+                            {% for detailorder in order.getOrdersDetails() %}
+                                <div class="detail" order-id="">
+                                    <img src="{{ asset('images/voyages/' ~ detailorder.getVoyagesid().getImages[0].name) }}" alt="">
+                                    <div class="">{{ detailorder.getVoyagesid().littledesc }}</div>
+                                    <div>{{ detailorder.quantity }}</div>
+                                    <div>{{ detailorder.quantity * detailorder.price }}</div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+		
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/orders-index.js') }}"></script>
 {% endblock %}

@@ -16,7 +16,7 @@ class OrdersDetails
     #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
     private ?Orders $orders = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
     private ?Voyage $voyages = null;
 
     #[ORM\Column]

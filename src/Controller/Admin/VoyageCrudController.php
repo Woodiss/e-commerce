@@ -7,6 +7,8 @@ use App\Form\VoyageImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -25,15 +27,21 @@ class VoyageCrudController extends AbstractCrudController
     {
         return [
             // IdField::new('id'),
+            TextField::new('country'),
+            TextField::new('city'),
             TextField::new('title'),
+            TextField::new('adresse'),
             IntegerField::new('price'),
             TextEditorField::new('description'),
+            TextField::new('little_desc'),
+            NumberField::new('longitude'),
+            NumberField::new('latitude'),
+            BooleanField::new('parking'),
+            BooleanField::new('free_wifi'),
+            BooleanField::new('pool'),
+            BooleanField::new('pets_accept'),
             CollectionField::new('images')
                 ->setEntryType(VoyageImageType::class)
-
-            // AssociationField::new('images')
-            // ->setTemplatePath('admin/fields/images.html.twig') // Chemin vers votre template personnalisé
-            // ->onlyOnIndex(), // Pour afficher seulement dans la liste, pas dans la vue détaillée
         ];
     }
     

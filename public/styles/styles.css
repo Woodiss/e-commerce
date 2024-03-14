@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Madimi+One&display=swap');
+
+/* RESET CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+    overflow: hidden!important;
+    /* overflow: scroll; */
+}
+
+.none {
+    display: none!important;
+}
+
+/* VARIABLES */
+:root {
+    --p-color: #0a3782;
+    --s-color: #001e69;
+    --white: #f0f0f0;
+    --grey: #969696;
+    --bd-r: 20px;
+}
+
+body {
+    background-color: var(--white);
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+
+/* ========================= DEBUT NAVBAR ================================ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--p-color);
+    padding: 10px 80px;
+    z-index: 2;
+    position: relative;
+    /* width: 100vw; */
+}
+
+nav .logo {
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+nav .logo h1 {
+    /* font-family: "Madimi One", sans-serif;
+    letter-spacing: 2px;
+    font-weight: 100; */
+
+}
+
+nav .logo img {
+    width: 80px;
+}
+
+nav .right-nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav .right-nav div {
+    cursor: pointer;
+}
+
+nav .right-nav .account, 
+nav .right-nav .contact, 
+nav .right-nav .cart {
+    padding: 7px;
+    background-color: var(--s-color);
+    display: flex;
+    /* gap: 10px; */
+    align-items: center;
+    border-radius: 9999px;
+}
+
+.account {
+    position: relative;
+}
+
+.account .circle, .account .chevron, .contact .circle, .cart .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.circle {
+    background-color: white;
+}
+
+.account img, .contact img, .cart img {
+    width: 15px;
+}
+
+
+.contact .circle, .contact .chevron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 3px;
+    width: 30px;
+    height: 30px;
+}
+
+.contact .text, .cart .text {
+    color: white;
+    margin: 0 8px;
+    font-weight: bold;
+    font-size: .9rem;
+}
+
+/* downdown account */
+#cancel-blur {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.588);
+    z-index: 1;
+    top: 0;
+}
+
+/* downdown */
+.dropdown {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 10px 40px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.dropdown a span {
+    color: black;
+}
+/* ========================= FIN NAVBAR ================================ */
+
+
+
+/* ========================= DEBUT FOOTER ================================ */
+footer {
+    background-color: #333;
+    background-color: var(--p-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+/* ========================= FIN FOOTER ================================ */
+
+
+
+/* ========================= ALL CONTAINERS ================================ */
+.container {
+    width: 60%;
+    margin: 30px auto;
+    flex: 1;
+}
+
+
+.index {
+    display: flex;
+}
+/* ========================= FIN CONTAINERS ================================ */
+
+
+
+/* ========================= DEBUT CARDS ================================ */
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 30px;
+    width: 830px;
+}
+
+.card {
+    display: flex;
+    border-radius: var(--bd-r);
+    background-color: white;
+    color: black;
+    overflow: hidden;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.07)
+}
+
+/* IMG */
+.card .img {
+    display: flex;
+}
+
+.card .img img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: var(--bd-r);
+}
+
+/* infos */
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+/* icons */
+.info img, .icons {
+    width: 20px;
+    filter: invert(49%) sepia(6%) saturate(362%) hue-rotate(201deg) brightness(91%) contrast(91%);
+}
+
+.card .info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+/* price */
+.price {
+    width: 120px!important;
+    padding: 16px;
+    /* padding-left: 60px; */
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    white-space: nowrap;
+    /* background-color: #eeeded; */
+    box-shadow: -16px 0px 20px 0px rgba(0, 0, 0, 0.04)
+}
+
+.price span {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--s-color);
+}
+/* ========================= FIN CARDS ================================ */
+
+
+
+/* ========================= DEBUT MAP ================================ */
+#map {
+    background: var(--white);
+    height: 100vh;
+    width: auto;
+    flex: 1;
+    position: sticky;
+    top: 0;
+}
+
+.custom-marker {
+    font-weight: bold;
+    padding: 5px 10px;
+    background: white;
+    color: black;
+    font-size: 12px; /* Taille de la police */
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.leaflet-container a{
+    color: black;
+}
+
+.custom-marker:hover, .marker-hover{
+    background: var(--p-color);
+    color: var(--white)!important;
+}
+
+
+/* ========================= FIN MAP ================================ */
+
+
+
+/* ========================= DEBUT SINGLE VOYAGE ================================ */
+.singlecard {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.head-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    width: 100%;
+}
+
+.head-card .adresse{
+    display: flex;
+    align-items: center;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: calc(60% - 5px) auto;
+    grid-template-rows: repeat(3, calc(33% - 5px));
+    gap: 10px;
+    height: 70vh;
+}
+
+.images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+
+}
+
+.images img:nth-child(1) { grid-area: 1 / 1 / 3 / 2; }
+.images img:nth-child(2) { grid-area: 3 / 1 / 4 / 2; }
+
+.images img:nth-child(3) { grid-area: 1 / 2 / 2 / 3; }
+.images img:nth-child(4) { grid-area: 2 / 2 / 3 / 3; }
+.images img:nth-child(5) { grid-area: 3 / 2 / 4 / 3; }
+
+.desc, .infos-services {
+    margin-top: 20px;
+}
+
+.desc p, .infos-grid {
+    margin-top: 10px;
+}
+
+.infos-left {
+    width: 50%;
+}
+
+.infos-grid {
+    width: 100%;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+}
+
+.infos-grid .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.infos-services {
+    display: flex;
+    justify-content: space-between;
+}
+
+.infos-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    
+}
+
+.infos-right span {
+    font-weight: bold;
+    color: var(--p-color);
+}
+
+.infos-right a.buy{
+    padding: 7px;
+    background-color: var(--p-color);
+    border-radius: 3px;
+    color: white;
+}
+/* ========================= FIN SINGLE VOYAGE ================================ */
+
+
+/* ========================= LOGIN / REGISTER ================================ */
+
+.form {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    /* background-color: white; */
+}
+
+.form form {
+    background-color: white;
+    padding: 20px 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.07)
+}
+
+.form form > div {
+    margin-top: 20px;
+}
+
+.form input {
+    margin-top: 5px;
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+    width: 20vw;
+    border: 1px solid black;
+    outline: none;
+}
+
+input:focus {
+    border: 2px solid #001e69;
+    outline: none;
+}
+
+.checkbox input {
+    display: inline;
+    width: auto;
+    margin-left: 15px;
+}
+
+.btn-form {
+    padding: 7px;
+    border: none;
+    background-color: var(--p-color);
+    color: white;
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.reset-password {
+    margin-top: 7px!important;
+}
+
+.reset-password a {
+    color: black;
+}
+
+.form div p {
+    text-wrap: wrap;
+}
+
+/* ========================= FIN LOGIN / REGISTER ================================ */
+
+
+
+/* ========================= DEBUT PAGE PANIER ================================ */
+
+.container-cart {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.container-cart table thead{
+    color: var(--grey);
+    font-size: .7rem;
+}
+
+.container-cart section.table thead tr th {
+    padding: 0 8px;
+}
+
+.container-cart section.table tbody tr td {
+    padding: 0 8px;
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.container-cart section.table tbody tr td:nth-child(1) {
+    padding: 0;
+}
+
+.container-cart section.table tbody tr td:nth-child(2) {
+    font-size: .7rem;
+    font-weight: bold;
+}
+
+.container-cart .price-cart {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 20px;
+    position: sticky;
+    top: 30px;
+    height: max-content;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.07)
+}
+
+.container-cart .price-cart p {
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container-cart .price-cart .total-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #001e69;
+}
+
+.container-cart .price-cart a {
+    background-color: #0a3782;
+    color: var(--white);
+    padding: 14px;
+    white-space: nowrap;
+    border-radius: 9999px;
+}
+/* ========================= FIN PAGE PANIER ================================ */
+
+
+
+/* ========================= DEBUT PAGE COMMANDE ================================ */
+.form-orders {
+    /* width: 100%; */
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 50px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.07)
+}
+
+.form-orders div{
+    margin-top: 15px;
+}
+
+.form-orders div input[type=text], .form-orders div input[type=number], .form-orders select {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+    border-radius: 5px;
+    padding: 5px 10px;
+    /* width: 20vw; */
+    border: 1px solid black;
+    outline: none;
+}
+
+.form-orders input[type=radio] {
+    margin-top: 30px;
+}
+
+#orders_deliveryAdresse, #orders_billingAdresse {
+    height: 0px;
+    overflow: hidden;
+    box-sizing: content-box;
+    transition: all 0.4s ease-out;
+}
+
+/* ========================= FIN PAGE COMMANDE ================================ */
+
+
+
+/* ========================= DEBUT PAGE COMMANDE INDEX ================================ */
+
+.container-orders {
+    margin-top: 50px;
+}
+
+.container-orders .table .table-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-orders .table .content-orders .order {
+    justify-content: space-between;
+    display: flex;
+}
+
+.container-orders .table .table-head div, .container-orders .table .order div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 150px;
+}
+
+.container-orders .table .statut {
+    width: 250px!important;
+
+}
+
+.all-details {
+    height: 0px;
+    overflow: hidden;
+    transition: all .3s; 
+}
+
+.detail {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.detail div {
+    display: flex;
+    align-items: center;
+    
+}
+
+.detail img {
+    width: 200px;
+}

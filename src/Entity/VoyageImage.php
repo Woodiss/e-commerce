@@ -18,7 +18,7 @@ class VoyageImage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
     #[Vich\UploadableField(mapping: 'voyages', fileNameProperty: 'name', size: 'size')]
@@ -53,7 +53,7 @@ class VoyageImage
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name = null): static
     {
         $this->name = $name;
 
@@ -65,7 +65,7 @@ class VoyageImage
         return $this->size;
     }
 
-    public function setSize(int $size): static
+    public function setSize(int $size = null): static
     {
         $this->size = $size;
 

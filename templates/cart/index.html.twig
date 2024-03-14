@@ -3,55 +3,59 @@
 {% block title %}Voyage index{% endblock %}
 
 {% block body %}
-    <h1>panier</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                {# <th>Id</th> #}
-                <th>Title</th>
-                <th>Description</th>
-                <th>ImageFile</th>
-                <th>quantité</th>
-                {# <th>total</th> #}
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for element in data %}
-            <tr>
-                {# <td>{{ voyage.id }}</td> #}
-                <td>{{ element.voyage.title }}</td>
-                <td>{{ element.voyage.description|raw }}</td>
-                <td>{% for image in element.voyage.getImages() %}
-                    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
-                {% endfor %}</td>
-                <td>{{ element.quantity }}</td>
-                {# <td>{{ voyage.quantity * voyage.product.price }}</td> #}
-                <td>
-                    <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
-                    <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
-                    <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">supp</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tfooter>
-            <tr>
-                <td colspan="2">Total</td>
-                <td>prix €</td>
-                <td>
-                    <a href="{{ path('cart_empty') }}">vider le panier</a>
-                </td>
-                <td>
-                    <a href="{{ path('orders_add') }}" ><p style="padding:10px 15px;background:blue;color:black;width:100px">valider le panier</p></a>
+    <div class="container">
+    
+        <h3 style="text-align: center;">VOTRE PANIER :</h3>
+        <div class="container-cart">
+            <section class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>DESIGNATION</th>
+                            <th>PRIX</th>
+                            <th>QUANTITE</th>
+                            <th>SOUS-TOTAL</th>
+                            <th><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in data %}
+                            <tr>
+                                <td>
+                                    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
+                                </td>
+                                <td>{{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}
+                                <br>{{ element.voyage.littledesc }}
+                                </td>
+                                <td>{{ element.voyage.price }} €</td>
+                                <td>
+                                    <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
+                                    {{ element.quantity }}
+                                    <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
+                                </td>
+                                <td>
+                                    {{ element.quantity * element.voyage.price }} €            
+                                </td>
+                                <td>
+                                    <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
+                                        <img class="icons" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
+                                    </a>
+                                </td>
+                            </tr>
+                        {# {% else %} #}
+                        {% endfor %}
+                    </tbody>
                 
-                </td>
-            </tr>
-        </tfooter>
-    </table>
+                </table>
+            </section>
+            <section class="price-cart">
+                <p>TOTAL TTC</p>
+                <p class="total-price">{{ total }} €</p>
+                <a href="{{ path('orders_app_order_new') }}">PASSER COMMANDE</a>
+
+            </section>
+        </div>
+    
+    </div>
 {% endblock %}

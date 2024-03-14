@@ -3,37 +3,84 @@
 {% block title %}Voyage{% endblock %}
 
 {% block body %}
-    <h1>Voyage</h1>
+    <div class="container">
+        <section class="singlecard">
+            
+            <h1>{{ voyage.title }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ voyage.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ voyage.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ voyage.description }}</td>
-            </tr>
-            <tr>
-                <th>ImageFile</th>
-                {# <td>{{ voyage.imageFile }}</td> #}
-                <td>
-                    {% for image in voyage.images %}
-                        <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="head-card">
+                <div class="adresse info">
+                    <img src="{{ asset('images/images_site/svg_icons/marker.svg') }}" alt="">
+                    {{ voyage.adresse }}, {{ voyage.city }}, {{ voyage.country }}
+                </div>
 
-    <a href="{{ path('app_voyage_index') }}">back to list</a>
+                
+            </div>
 
-    <a href="{{ path('app_voyage_edit', {'id': voyage.id}) }}">edit</a>
+            <div class="images">
+                <img src="{{ asset('images/voyages/' ~ voyage.getImages()[0].name) }}" alt="">
+                <img src="{{ asset('images/voyages/' ~ voyage.getImages()[1].name) }}" alt="">
+            
+                <img src="{{ asset('images/voyages/' ~ voyage.getImages()[1].name) }}" alt="">
+                <img src="{{ asset('images/voyages/' ~ voyage.getImages()[2].name) }}" alt="">
+                <img src="{{ asset('images/voyages/' ~ voyage.getImages()[3].name) }}" alt="">
+            </div>
 
-    {{ include('voyage/_delete_form.html.twig') }}
+            <div class="desc">
+                <h4>Description</h4>
+                <p>{{ voyage.description|raw }}</p>
+            </div>
+            
+            <div class="infos-services">
+                <div class="infos-left">
+                    <h4>Informations et services</h4>
+                    <div class="infos-grid">
+                        <div class="info">
+                            <img src="{{ asset('images/images_site/svg_icons/P-parking.svg') }}" alt="">
+                            {% if voyage.parking %}
+                                <span>parking</span>
+                            {% else %}
+                                <span>pas de parking</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="info">
+                            <img src="{{ asset('images/images_site/svg_icons/wifi.svg') }}" alt="">
+                            {% if voyage.freewifi %}
+                                <span>wifi gratuit</span>
+                            {% else %}
+                                <span>wifi payant</span>
+                            {% endif %}
+						</div>
+
+                        <div class="info">
+                            <img src="{{ asset('images/images_site/svg_icons/pool-water.svg') }}" alt="">
+                            {% if voyage.pool %}
+                                <span>piscine</span>
+                            {% else %}
+                                <span>pas de piscine</span>
+                            {% endif %}
+						</div>
+
+                        <div class="info">
+                            <img src="{{ asset('images/images_site/svg_icons/dog-face.svg') }}" alt="">
+                            {% if voyage.pool %}
+                                <span>accepte les animaux</span>
+                            {% else %}
+                                <span>n'accepte pas les animaux</span>
+                            {% endif %}
+						</div>
+                    </div>
+                </div>
+                <div class="infos-right">
+                    <p>Choisir ce coffret</p>
+                    <span>{{ voyage.price }} €</span>
+                    <a href="{{ path('cart_add', {'id': voyage.id}) }}" class="buy">Ajouter au panier</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
 {% endblock %}
+
+

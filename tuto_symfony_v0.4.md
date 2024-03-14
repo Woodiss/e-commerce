@@ -77,6 +77,24 @@ une fois le serveur lancer vous ne pouvez plus utiliser la console utiliser pour
    0 : on le fait nous-mêmes
   1 : il le fait avec email et password
 
+## fonction réinitialiser mot de passe
+
+- installation du bundle "reset-password-bundle" [lien tuto](https://github.com/symfonycasts/reset-password-bundle)
+  commande: <span class="g">composer require symfonycasts/reset-password-bundle</span>
+- creation des fichiers
+  commande: <span class="g">php bin/console make:reset-password</span>
+  vous demandera : choix de la redirection (app_login) , l'adresse qui envoie les mails, le nom du bot (attention il sera visible dans le mail d'envoie)
+- update la base de donnée
+  commande: <span class="g">php bin/console make:migration</span>
+- config le mailer (gmail)
+  commande: <span class="g">composer require symfony/google-mailer </span>
+  aller dans le fichier <span class="y">.env</span> et décommenté la varible <span class="c">MAILER_DNS</span> voici comment la config: MAILER_DSN=gmail+smtp://adresse.exemple@gmail.fr:xxxx%20xxxx%20xxxx%20xxxx@default (remplacer adresse.exemple@gmail.fr par votre adresse et xxxx%20xxxx%20xxxx%20xxxx par votre mot de passe d'application (les %20 représente les espaces))
+- le style / label
+  pour modifier le style les fichiers sont dans <span class="y">templates/reset_password</span>
+  et pour les label <span class="y">src/form/ResetPasswordRequestFormType.php</span>
+- ça ne marche toujours pas ?
+  commande: <span class="g">php bin/console messenger:consume async</span>
+
 ## Créer une relation entre deux table (Entity)
 
 - choisir la table

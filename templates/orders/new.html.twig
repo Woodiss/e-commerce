@@ -1,16 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrdersController!{% endblock %}
+{% block title %}Hello OrdersController!
+{% endblock %}
 
 {% block body %}
-    <h1>New Order</h1>
-    <p>aaaa</p>
-    {{ form_start(form, {'attr': {'id': 'checkout-form'}}) }}
-    {{ form_row(form.deliveryAdresse) }}
-    <p>bbbbb</p>
-    {{ form_row(form.billingAdresse) }}
-    {# Autres champs de formulaire pour Orders #}
-    {{ form_end(form) }}
+	<div class="container">
+
+		<div class="form-orders">
+			{{ form_start(form, {'action': path('orders_app_order_new'), 'attr': {'id': 'checkout-form'}}) }}
+			<h1>PASSER COMMANDE</h1>
+			<input type="radio" id="delivery_existing" name="delivery_option" value="existing" checked>
+			<label for="delivery_existing">Sélectionner une adresse de livraison</label>
+			<select name="delivery_select" id="delivery_select">
+				{% for delivery in deliverys %}
+					<option value="{{ delivery.id }}">{{ delivery.city }}</option>
+				{% endfor %}
+			</select>
+			<input type="radio" id="delivery_new" name="delivery_option" value="new">
+			<label for="delivery_new">Nouvelle adresse de livraison</label>
+			{{ form_row(form.deliveryAdresse) }}
 
 
+			<input type="radio" id="billing_existing" name="billing_option" value="existing" checked>
+			<label for="billing_existing">Sélectionner une adresse de facturation</label>
+			<select name="billing_select" id="billing_select">
+				{% for billing in billings %}
+					<option value="{{ billing.id }}">{{ billing.city }}</option>
+				{% endfor %}
+			</select>
+			<input type="radio" id="billing_new" name="billing_option" value="new">
+			<label for="billing_new">Nouvelle adresse de facturation</label>
+			{{ form_row(form.billingAdresse) }}
+
+			<input type='hidden' name='stripeToken' id='stripe-token-id'>
+			<div id="card-element"></div>
+			<button class="btn-form" onclick="createToken()">PAYER</button>
+            {# {{ form_widget(form.submit, { 'attr': {'class': 'btn-form'}}) }} #}
+
+
+			{{ form_end(form) }}
+
+		</div>
+	</div>
+		
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/orders-script.js') }}"></script>
+	<script src="https://js.stripe.com/v3/" ></script>
+	<script>
+    	console.log("Stripe Key: " + "{{stripe_key}}");
+        var stripe = Stripe("{{stripe_key}}");
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+    
+        function createToken() {
+            document.querySelector(".btn-form").disabled = true;
+            stripe.createToken(cardElement).then(function(result) {
+				
+                     
+                if(typeof result.error != 'undefined') {
+                    document.querySelector(".btn-form").disabled = false;
+                    alert(result.error.message);
+                }
+     
+                // creating token success
+                if(typeof result.token != 'undefined') {
+                    document.getElementById("stripe-token-id").value = result.token.id;
+                    document.getElementById('checkout-form').submit();
+                }
+            });
+        }
+    </script>
 {% endblock %}

@@ -12,8 +12,12 @@ class OrdersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('deliveryAdresse', DeliveryAdresseType::class)
-        ->add('billingAdresse', BillingAdresseType::class)
+        ->add('deliveryAdresse', DeliveryAdresseType::class, [
+            'required' => false,
+            ])
+        ->add('billingAdresse', BillingAdresseType::class, [
+            'required' => false,
+        ])
         // Ajoutez d'autres champs nécessaires pour l'entité Orders
         ->add('submit', SubmitType::class, [
             'label' => 'Create Order',

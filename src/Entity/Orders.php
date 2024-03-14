@@ -24,7 +24,7 @@ class Orders
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'orders_id', targetEntity: OrdersDetails::class, orphanRemoval:true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'orders', targetEntity: OrdersDetails::class, orphanRemoval:true, cascade: ['persist'])]
     private Collection $ordersDetails;
 
     #[ORM\ManyToOne(inversedBy: 'orders', cascade: ['persist'])]
@@ -32,6 +32,9 @@ class Orders
 
     #[ORM\ManyToOne(inversedBy: 'orders', cascade: ['persist'])]
     private ?DeliveryAdresse $deliveryAdresse = null;
+
+    #[ORM\Column]
+    private ?float $total = null;
 
     public function __construct()
     {
@@ -130,6 +133,18 @@ class Orders
     public function setDeliveryAdresse(?deliveryAdresse $deliveryAdresse): static
     {
         $this->deliveryAdresse = $deliveryAdresse;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(float $total): static
+    {
+        $this->total = $total;
 
         return $this;
     }

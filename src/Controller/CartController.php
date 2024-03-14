@@ -32,7 +32,7 @@ class CartController extends AbstractController
                     
                 ];
             }
-            // $total += $voyage->getPrice() * $quantity;
+            $total += $voyage->getPrice() * $quantity;
         }
         // dd($data);
         return $this->render('cart/index.html.twig', [
