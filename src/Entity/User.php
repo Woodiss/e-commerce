@@ -41,6 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $phone_number = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Orders::class)]
+    #[ORM\OrderBy(["created_at" => "DESC"])]
     private Collection $orders;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: DeliveryAdresse::class, orphanRemoval: true)]

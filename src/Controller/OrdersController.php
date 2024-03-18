@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use Stripe;
-use Stripe\Charge;
-use Stripe\Customer;
 use App\Entity\Orders;
 use App\Form\OrdersType;
 use App\Entity\OrdersDetails;
 use App\Entity\BillingAdresse;
 use App\Entity\DeliveryAdresse;
-use Symfony\Component\Mime\Address;
 use App\Repository\OrdersRepository;
 use App\Repository\VoyageRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -36,10 +33,6 @@ class OrdersController extends AbstractController
         }
 
         $orders = $user->getOrders();
-
-
-        // $ordersdetails = $ordersDetailsRepository->findBy(['orders' => 18]);
-        // dd($ordersdetails);
 
         return $this->render('orders/index.html.twig', [
             'orders' => $orders,
@@ -73,17 +66,6 @@ class OrdersController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($request->request->get('stripeToken'));
-            Stripe\Stripe::setApiKey($_ENV["STRIPE_SECRET"]);
-            Stripe\Charge::create([
-                "amount" => 5 * 100,
-                "currency" => "eur",
-                "source" => $request->request->get('stripeToken'),
-                "description" => "Binaryboxtuts Payment Test"
-            ]);
-
-            // dd($deliveryOption);
-
             // boucle sur $panier
             $total = 0;
             foreach ($panier as $item => $quantity) {
@@ -105,6 +87,15 @@ class OrdersController extends AbstractController
                 $total += $price * $quantity;
             }
             // dd($total);
+
+            // dd($request->request->get('stripeToken'));
+            Stripe\Stripe::setApiKey($_ENV["STRIPE_SECRET"]);
+            Stripe\Charge::create([
+                "amount" => $total * 100,
+                "currency" => "eur",
+                "source" => $request->request->get('stripeToken'),
+                "description" => "Binaryboxtuts Payment Test"
+            ]);
 
             $deliveryOption = $request->request->get('delivery_option');
             $billingOption = $request->request->get('billing_option');
@@ -172,7 +163,8 @@ class OrdersController extends AbstractController
             $session->remove('panier');
 
             // Redirigez vers une autre page
-            return $this->redirectToRoute('app_voyage_index');
+            $this->addFlash('success', 'Commande validée!');
+            return $this->redirectToRoute('orders_index');
         }
 
         return $this->render('orders/new.html.twig', [

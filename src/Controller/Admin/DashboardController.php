@@ -19,7 +19,10 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        return $this->redirect($adminUrlGenerator->setController(VoyageCrudController::class)->generateUrl());
+        
+        // return $this->render('admin/dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
@@ -31,13 +34,14 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
-  
-            MenuItem::section('Users'),
-            MenuItem::linkToCrud('utilisateur', 'fa fa-comment', User::class),
+            // MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::section('Voyages'),
             MenuItem::linkToCrud('Voyages', 'fa fa-plane', Voyage::class),
-            MenuItem::linkToCrud('Voyages images', 'fa fa-user', VoyageImage::class),
-            MenuItem::linkToCrud('Commandes', 'fa fa-user', Orders::class),
+            MenuItem::linkToCrud('Voyages images', 'fa-solid fa-image', VoyageImage::class),
+            
+            MenuItem::section('Utilisateurs'),
+            MenuItem::linkToCrud('utilisateurs', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('Commandes', 'fa-solid fa-box-open', Orders::class),
         ];
     }
 }

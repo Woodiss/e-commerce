@@ -2,23 +2,34 @@
 
 namespace App\Form;
 
-use App\Entity\DeliveryAdresse;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\DeliveryAdresse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class DeliveryAdresseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('full_name')
-            ->add('adresse')
-            ->add('City')
-            ->add('postal_code')
-            ->add('phone_number')
+            ->add('full_name', TextType::class, [
+                'label' => 'Nom complet'
+            ])
+            ->add('adresse', TextType::class, [
+                'label' => 'Adresse'
+            ])
+            ->add('City', TextType::class, [
+                'label' => 'Ville'
+            ])
+            ->add('postal_code', TextType::class, [
+                'label' => 'Code postal'
+            ])
+            ->add('phone_number', TextType::class, [
+                'label' => 'Téléphone'
+            ])
         ;
     }
 

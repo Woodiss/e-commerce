@@ -63,7 +63,6 @@ nav .logo h1 {
     /* font-family: "Madimi One", sans-serif;
     letter-spacing: 2px;
     font-weight: 100; */
-
 }
 
 nav .logo img {
@@ -155,6 +154,32 @@ nav .right-nav .cart {
 .dropdown a span {
     color: black;
 }
+
+.body-container .alert {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    border-radius: var(--bd-r);
+    z-index: 2;
+    width: 350px;
+    background-color: var(--white);
+    padding: 15px;
+    border: 1px solid var(--p-color);
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
 /* ========================= FIN NAVBAR ================================ */
 
 
@@ -220,6 +245,7 @@ footer ul li a:hover {
 
 .card {
     display: flex;
+    justify-content: space-between;
     border-radius: var(--bd-r);
     background-color: white;
     color: black;
@@ -245,6 +271,7 @@ footer ul li a:hover {
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
+    width: 100%;
 }
 
 /* icons */
@@ -262,7 +289,7 @@ footer ul li a:hover {
 
 /* price */
 .price {
-    width: 120px!important;
+    width: 220px!important;
     padding: 16px;
     /* padding-left: 60px; */
     display: flex;
@@ -293,6 +320,7 @@ footer ul li a:hover {
 }
 
 .custom-marker {
+    transition: all .2s;
     font-weight: bold;
     padding: 5px 10px;
     background: white;
@@ -445,6 +473,7 @@ footer ul li a:hover {
 input:focus {
     border: 2px solid #001e69;
     outline: none;
+    margin-top: 4px;
 }
 
 .checkbox input {

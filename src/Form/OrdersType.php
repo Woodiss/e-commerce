@@ -17,11 +17,11 @@ class OrdersType extends AbstractType
             ])
         ->add('billingAdresse', BillingAdresseType::class, [
             'required' => false,
-        ])
-        // Ajoutez d'autres champs nécessaires pour l'entité Orders
-        ->add('submit', SubmitType::class, [
-            'label' => 'Create Order',
         ]);
+        // Ajoutez d'autres champs nécessaires pour l'entité Orders
+        // ->add('submit', SubmitType::class, [
+        //     'label' => 'Create Order',
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

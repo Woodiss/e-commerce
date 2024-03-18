@@ -1,18 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Voyage index
+{% block title %}Voyages
 {% endblock %}
 
 {% block body %}
 
 	<div class="index">
 		<div class="cards">
-			<h1>Voyage index</h1>
+			<h1>Liste des voyages</h1>
 
 			{% for voyage in voyages %}
-				{# {% for image in voyage.getImages() %}
-								    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ image.name) }}" alt="Voyage Image">
-								{% endfor %} #}
 				<a href="{{ path('app_voyage_show', {'id': voyage.id}) }}" class="a-card" data-lat="{{ voyage.latitude }}" data-long="{{ voyage.longitude }}" data-price="{{ voyage.price }}" data-id="{{ voyage.id }}">
 					<section class="card">
 						<div class="img">
@@ -21,8 +18,7 @@
 
 						<div class="infos">
 							<div>
-								<span class="ville">{{ voyage.city }},
-									{{ voyage.country }}</span>
+								<span class="ville">{{ voyage.city }},{{ voyage.country }}</span>
 								<h2>{{ voyage.title }}</h2>
 							</div>
 
