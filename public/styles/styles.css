@@ -460,20 +460,21 @@ footer ul li a:hover {
     margin-top: 20px;
 }
 
-.form input {
+.form input, .form textarea, .form select {
     margin-top: 5px;
     display: block;
     border-radius: 5px;
     padding: 5px;
     width: 20vw;
-    border: 1px solid black;
+    border: 2px solid transparent;
     outline: none;
+    box-shadow: 0px 0px 0px 1px black;
 }
 
-input:focus {
+input:focus, textarea:focus {
+    box-shadow: none;
     border: 2px solid #001e69;
     outline: none;
-    margin-top: 4px;
 }
 
 .checkbox input {
@@ -507,6 +508,9 @@ input:focus {
 
 /* ========================= FIN LOGIN / REGISTER ================================ */
 
+/* input[type="checkbox"].demo5:checked + label {
+    background-color: #00B7E8;
+} */
 
 
 /* ========================= DEBUT PAGE PANIER ================================ */
@@ -515,6 +519,11 @@ input:focus {
     display: flex;
     justify-content: space-between;
     margin-top: 35px;
+    width: 100%;
+}
+
+.container-cart table {
+    border-collapse: collapse;
 }
 
 .container-cart table thead{
@@ -522,8 +531,18 @@ input:focus {
     font-size: .7rem;
 }
 
-.container-cart section.table thead tr th {
+.container-cart section.table, .container-cart section.table table {
+    width: 100%;
+}
+
+.container-cart section.table th, .container-cart section.table td{
+    border-bottom: 2px solid var(--grey);
     padding: 0 8px;
+}
+
+.container-cart section.table thead tr th:nth-child(1) {
+    width: 150px;
+    /* border: none; */
 }
 
 .container-cart section.table tbody tr td {
@@ -539,6 +558,23 @@ input:focus {
 .container-cart section.table tbody tr td:nth-child(2) {
     font-size: .7rem;
     font-weight: bold;
+}
+
+.container-cart .td-img {
+    display: flex;
+}
+
+.container-cart .td-img img {
+    height: 150px;
+}
+
+.container-cart .td-quantity {
+    font-size: 1.2rem;
+}
+
+.container-cart .icons-cart {
+    width: 20px;
+    filter: invert(11%) sepia(62%) saturate(3354%) hue-rotate(216deg) brightness(90%) contrast(111%);
 }
 
 .container-cart .price-cart {

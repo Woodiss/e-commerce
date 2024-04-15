@@ -4426,16 +4426,16 @@
         },
         {
             "name": "symfony/mailer",
-            "version": "v6.3.11",
+            "version": "v6.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "e35910bb1d58b8ea173bbf35729340d1c3e52bf4"
+                "reference": "3cbb745658179fb1a68ba87a4a4f16ee99dcb821"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/e35910bb1d58b8ea173bbf35729340d1c3e52bf4",
-                "reference": "e35910bb1d58b8ea173bbf35729340d1c3e52bf4",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/3cbb745658179fb1a68ba87a4a4f16ee99dcb821",
+                "reference": "3cbb745658179fb1a68ba87a4a4f16ee99dcb821",
                 "shasum": ""
             },
             "require": {
@@ -4486,7 +4486,7 @@
             "description": "Helps sending emails",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailer/tree/v6.3.11"
+                "source": "https://github.com/symfony/mailer/tree/v6.3.12"
             },
             "funding": [
                 {
@@ -4502,7 +4502,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-18T10:27:58+00:00"
+            "time": "2024-01-29T14:46:07+00:00"
         },
         {
             "name": "symfony/messenger",
@@ -6765,16 +6765,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.3.7",
+            "version": "v6.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "30212e7c87dcb79c83f6362b00bde0e0b1213499"
+                "reference": "5c67cd1b1635be525f4dbe89042cdc3749a89ff5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/30212e7c87dcb79c83f6362b00bde0e0b1213499",
-                "reference": "30212e7c87dcb79c83f6362b00bde0e0b1213499",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/5c67cd1b1635be525f4dbe89042cdc3749a89ff5",
+                "reference": "5c67cd1b1635be525f4dbe89042cdc3749a89ff5",
                 "shasum": ""
             },
             "require": {
@@ -6797,7 +6797,7 @@
                 "symfony/translation-implementation": "2.3|3.0"
             },
             "require-dev": {
-                "nikic/php-parser": "^4.13",
+                "nikic/php-parser": "^4.18|^5.0",
                 "psr/log": "^1|^2|^3",
                 "symfony/config": "^5.4|^6.0",
                 "symfony/console": "^5.4|^6.0",
@@ -6840,7 +6840,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.3.7"
+                "source": "https://github.com/symfony/translation/tree/v6.3.12"
             },
             "funding": [
                 {
@@ -6856,7 +6856,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-28T23:11:45+00:00"
+            "time": "2024-01-23T14:35:58+00:00"
         },
         {
             "name": "symfony/translation-contracts",

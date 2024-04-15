@@ -154,7 +154,6 @@ class OrdersController extends AbstractController
             $order->setReference($ref);
             $order->setTotal($total);
 
-
             // Sauvegardez les entités dans la base de données
             $entityManager->persist($order);
             $entityManager->flush();

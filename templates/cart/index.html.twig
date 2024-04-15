@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container">
     
-        <h3 style="text-align: center;">VOTRE PANIER :</h3>
+        <h3 style="text-align: center;">VOTRE PANIER</h3>
         <div class="container-cart">
             <section class="table">
                 <table>
@@ -13,8 +13,8 @@
                         <tr>
                             <th></th>
                             <th>DESIGNATION</th>
-                            <th>PRIX</th>
-                            <th>QUANTITE</th>
+                            <th>PRIX /J</th>
+                            <th>JOUR(S)</th>
                             <th>SOUS-TOTAL</th>
                             <th><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt=""></th>
                         </tr>
@@ -22,14 +22,14 @@
                     <tbody>
                         {% for element in data %}
                             <tr>
-                                <td>
-                                    <img style="max-width:150px" src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
+                                <td class="td-img">
+                                    <img src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
                                 </td>
-                                <td>{{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}
-                                <br>{{ element.voyage.littledesc }}
+                                <td>
+                                    {{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}                  
                                 </td>
                                 <td>{{ element.voyage.price }} €</td>
-                                <td>
+                                <td class="td-quantity">
                                     <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
                                     {{ element.quantity }}
                                     <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
@@ -39,7 +39,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
-                                        <img class="icons" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
+                                        <img class="icons-cart" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
                                     </a>
                                 </td>
                             </tr>
