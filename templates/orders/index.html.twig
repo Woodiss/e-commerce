@@ -13,28 +13,36 @@
 
             <section class="table">
                 <div class="table-head">
-                    <div>Date</div>
-                    <div>N° commande</div>
-                    <div>Montant</div>
-                    <div class="statut">Statut</div>
-                    <div>Détails</div>
+
+                    <div class="head-respons">
+                        <div>Date</div>
+                        <div>N° commande</div>
+                        <div>Montant</div>
+                        <div class="statut">Statut</div>
+                    </div>
+
+                    <div class="head-detail">Détails</div>
                 </div>
 
                 <div class="content-orders">
                     {% for order in orders %}
                         <div class="order">
-                            <div>{{ order.createdAt|date("d/m/Y") }}</div>
-                            <div>{{ order.reference }}</div>
-                            <div>{{ order.total }}</div>
-                            <div class="statut">
-                                {% set dateLimite = "now"|date_modify("-5 days") %}
-                                {% if order.createdAt < dateLimite %}
-                                    <span>Commande livré</span>
-                                {% else %}
-                                    <span>En cours de livraison</span>
-                                {% endif %}
+                            <div class="order-respons">
+                                <div>{{ order.createdAt|date("d/m/Y") }}</div>
+                                <div>{{ order.reference }}</div>
+                                <div>{{ order.total }}</div>
+                                <div class="statut">
+                                    {% set dateLimite = "now"|date_modify("-5 days") %}
+                                    {% if order.createdAt < dateLimite %}
+                                        <span>Commande livré</span>
+                                    {% else %}
+                                        <span>En cours de livraison</span>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="{{ order.id }}" onclick="toggle({{ order.id }})">
+                            
+
+                            <div class="detail-more {{ order.id }}" onclick="toggle({{ order.id }})">
                                 <span>Détails</span>
                                 <img class="icons" src="{{ asset('images/images_site/svg_icons/chevron-down.svg') }}" alt="">
                             </div>
@@ -43,9 +51,9 @@
                             {% for detailorder in order.getOrdersDetails() %}
                                 <div class="detail" order-id="">
                                     <img src="{{ asset('images/voyages/' ~ detailorder.getVoyagesid().getImages[0].name) }}" alt="">
-                                    <div class="">{{ detailorder.getVoyagesid().littledesc }}</div>
-                                    <div>{{ detailorder.quantity }}</div>
-                                    <div>{{ detailorder.quantity * detailorder.price }}</div>
+                                    <div class="">{{ detailorder.getVoyagesid().title }}</div>
+                                    <div>x{{ detailorder.quantity }}</div>
+                                    <div class="price">{{ detailorder.quantity * detailorder.price }} €</div>
 
                                 </div>
                             {% endfor %}

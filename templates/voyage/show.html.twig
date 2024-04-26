@@ -14,7 +14,9 @@
                     {{ voyage.adresse }}, {{ voyage.city }}, {{ voyage.country }}
                 </div>
 
-                
+                <div class="btn-addcart">
+                    <a href="{{ path('cart_add', {'id': voyage.id}) }}" class="buy">Ajouter au panier {{ voyage.price }} €</a>
+                </div>
             </div>
 
             <div class="images">
@@ -72,11 +74,9 @@
 						</div>
                     </div>
                 </div>
-                <div class="infos-right">
-                    <p>Choisir ce coffret</p>
-                    <span>{{ voyage.price }} €</span>
-                    <a href="{{ path('cart_add', {'id': voyage.id}) }}" class="buy">Ajouter au panier</a>
-                </div>
+
+                <div class="infos-right"></div>
+
             </div>
 
         </section>

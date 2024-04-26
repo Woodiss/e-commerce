@@ -10,6 +10,16 @@
         <div></div>
         <div></div>
         <div></div>
-        <div></div>         
+        <div></div>  
+        <form method="post" action="http://localhost/cours/MONPROJETPRO/SweetHomes/admin/Creation-prod.php" enctype="multipart/form-data">
+            <input type="hidden" name="titre" value="coucou imane">
+            <input type="hidden" name="description" value="flemmeeeeeeeee">
+            <input type="date" name="date" >
+            <input type="hidden" name="category" value="1">
+            <input type="hidden" name="prix" value="6666666">
+            <input type="file" name="image">
+
+            <button type="submit">valider</button>
+        </form>       
     </div>
 {% endblock %}

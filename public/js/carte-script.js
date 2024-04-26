@@ -12,8 +12,7 @@ mapLayer.addTo(map);
 let cardVoyages = document.querySelectorAll('.a-card');
 
 cardVoyages.forEach(function(cardVoyage) {
-	console.log("tt");
-    // Get latitude and longitude from data attributes
+    // récupérer les data des voyages via les attributs
 	let id = parseFloat(cardVoyage.getAttribute('data-id'))
     let latitude = parseFloat(cardVoyage.getAttribute('data-lat'));
     let longitude = parseFloat(cardVoyage.getAttribute('data-long'));
@@ -21,6 +20,7 @@ cardVoyages.forEach(function(cardVoyage) {
 
 	console.log(latitude + " " + longitude + " " + price);
 
+	// création du marker
 	let customIcon = L.divIcon({
 	className: '',
 	html: '<a class="custom-marker card' + id + '" href="/' + id + '">' + price + ' €</a>',
@@ -30,7 +30,7 @@ cardVoyages.forEach(function(cardVoyage) {
 
 	console.log(customIcon);
 
-    // Create marker and add to map
+    // ajoute de "customIcon" sur la carte
     L.marker([longitude, latitude], { icon: customIcon }).addTo(map);
 
 	// souris entre dans la card

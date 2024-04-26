@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+    RewriteEngine On
+
+    # N'appliquez pas la réécriture pour les fichiers, dossiers ou liens symboliques existants
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+    # Arrête la boucle pour index.php
+    RewriteCond %{REQUEST_URI} !^/index\.php$
+
+    # Redirection des requêtes vers index.php
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
