@@ -1,7 +1,7 @@
 let map = L.map('map').setView([48.86055605437785, 2.3446300176453168], 13);
 
 // stadiamaps stamenterrain
-let mapLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.{ext}?api_key=4c69c8af-b344-42ce-aaa0-17b7d0ee9af6', {
+let mapLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.{ext}', {
 	minZoom: 4,
 	maxZoom: 17,
 	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
