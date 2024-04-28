@@ -779,51 +779,48 @@ input:focus, textarea:focus {
 /* ========================= DEBUT PAGE COMMANDE INDEX ================================ */
 
 .container-orders {
-    margin-top: 50px;
+    margin: 50px auto;
+    max-width: 1200px;
 }
 
 .container-orders .table .table-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px!important;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     background-color: #e1e1e1;
 }
 
+.container-orders .table .table-head div {
+    text-align: center;
+    padding: 15px 0;
+}
+
 .container-orders .table .content-orders .order{
-    justify-content: space-between;
-    display: flex;
-}
-
-.container-orders .table .table-head .head-respons, .container-orders .table .order .order-respons {
-    display: flex;
-    width: 100%;
-}
-
-.head-detail, .detail-more {
-    padding: 0 15px!important;
-}
-
-.container-orders .table .table-head .head-respons div, .container-orders .table .order .order-respons div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    width: 20%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .container-orders .table .order div {
-    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
 }
 
-.table .order, .table .detail {
+.order div:nth-of-type(2) {
+    font-weight: bold;
+}
 
+.order .icons {
+    transition: all .3s;
+}
+
+.table .order, 
+.table .detail {
     border: 1px solid #e1e1e1
 }
 
-.container-orders .table .statut {
-    width: 210px!important;
-
+.order-active{
+    background: #d9eef4;
 }
 
 .all-details {
@@ -839,32 +836,53 @@ input:focus, textarea:focus {
     justify-content: center;
 }
 
-.detail {
-    display: flex;
-    justify-content: space-between;
-}
-
-.content-orders > .detail > .price {
-    font-weight: bold;
+.all-details .detail {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .detail div {
     display: flex;
-    align-items: center;
-    padding: 0 15px;
-    
+    align-items: center;    
+}
+
+.detail-quantity,
+.detail-title {
+    justify-content: center;
+}
+
+.content-orders .detail .price {
+    font-weight: bold;
+    text-align: center;
+    grid-column: 5 / 6;
 }
 
 .detail img {
     width: 120px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 650px) {
     .container-orders .table .table-head {
         display: none;
     }
 
-    .order-respons {
-        flex-direction: column;
+    .container-orders .table .content-orders .order {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .container-orders .table .order {
+        padding: 8px;
+    }
+
+    .container-orders .table .order .detail-more {
+        grid-area: 1 / 2 / 5 / 3;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    .container-orders .table .order div {
+        padding: 3px 10px;
+        justify-content: flex-start;
     }
 }
