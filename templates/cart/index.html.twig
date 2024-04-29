@@ -8,44 +8,41 @@
         <h3 style="text-align: center;">VOTRE PANIER</h3>
         <div class="container-cart">
             <section class="table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>DESIGNATION</th>
-                            <th>PRIX /J</th>
-                            <th>JOUR(S)</th>
-                            <th>SOUS-TOTAL</th>
-                            <th><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt=""></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for element in data %}
-                            <tr>
-                                <td class="td-img">
-                                    <img src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
-                                </td>
-                                <td>
-                                    {{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}                  
-                                </td>
-                                <td>{{ element.voyage.price }} €</td>
-                                <td class="td-quantity">
-                                    <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
-                                    {{ element.quantity }}
-                                    <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
-                                </td>
-                                <td>
-                                    {{ element.quantity * element.voyage.price }} €            
-                                </td>
-                                <td>
-                                    <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
-                                        <img class="icons-cart" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
-                                    </a>
-                                </td>
-                            </tr>
-                        {# {% else %} #}
-                        {% endfor %}
-                    </tbody>
+                <div class="table-head">
+                    <div>Désignation</div>
+                    <div>Prix /J</div>
+                    <div>Jour(s)</div>
+                    <div>Sous-total</div>
+                    <div><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt=""></div>
+                </div>
+
+                <div>
+                    {% for element in data %}
+                        <div class="table-body">
+                            <div class="table-img">
+                                <img src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
+                            </div>
+                            <div>
+                                {{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}                  
+                            </div>
+                            <div>{{ element.voyage.price }} €</div>
+                            <div class="td-quantity">
+                                <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
+                                {{ element.quantity }}
+                                <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
+                            </div>
+                            <div>
+                                {{ element.quantity * element.voyage.price }} €            
+                            </div>
+                            <div>
+                                <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
+                                    <img class="icons-cart" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    {# {% else %} #}
+                    {% endfor %}
+                </div>
                 
                 </table>
             </section>

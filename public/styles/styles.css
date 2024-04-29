@@ -645,7 +645,45 @@ input:focus, textarea:focus {
     width: 100%;
 }
 
-.container-cart table {
+.container-cart .table .table-head {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 100px;
+    background-color: #e1e1e1;
+    border: 1px solid #e1e1e1
+}
+
+.container-cart .table .table-head div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.container-cart .table .table-head div:nth-of-type(1) {
+    grid-column: 2 / 3;
+}
+
+.container-cart .table .table-body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 100px;
+    border: 1px solid #e1e1e1
+}
+
+.td-img {
+
+}
+
+.container-cart .table .table-body div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-cart .table .table-body .table-img img{
+    width: 100%;
+}
+
+/* .container-cart table {
     border-collapse: collapse;
 }
 
@@ -665,7 +703,6 @@ input:focus, textarea:focus {
 
 .container-cart section.table thead tr th:nth-child(1) {
     width: 150px;
-    /* border: none; */
 }
 
 .container-cart section.table tbody tr td {
@@ -694,7 +731,7 @@ input:focus, textarea:focus {
 .container-cart .td-quantity {
     font-size: 1.2rem;
 }
-
+*/
 .container-cart .icons-cart {
     width: 20px;
     filter: invert(11%) sepia(62%) saturate(3354%) hue-rotate(216deg) brightness(90%) contrast(111%);
@@ -732,6 +769,7 @@ input:focus, textarea:focus {
     white-space: nowrap;
     border-radius: 9999px;
 }
+
 /* ========================= FIN PAGE PANIER ================================ */
 
 
@@ -849,6 +887,7 @@ input:focus, textarea:focus {
 .detail-quantity,
 .detail-title {
     justify-content: center;
+    padding-left: 15px;
 }
 
 .content-orders .detail .price {
@@ -884,5 +923,33 @@ input:focus, textarea:focus {
     .container-orders .table .order div {
         padding: 3px 10px;
         justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .all-details .detail {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .detail img {
+        grid-area: 1 / 1 / 5 / 2;
+    }
+    
+    .detail-title {
+        grid-area: 1 / 2 / 2 / 3;
+    }
+
+    .detail-quantity {
+        grid-area: 2 / 2 / 3 / 3;
+    }
+
+    .content-orders .detail .price {
+        grid-area: 3 / 2 / 4 / 3;
+    }
+
+    .detail-title, .detail-quantity, .price {
+        justify-content: end;
+        margin-right: 10px;
     }
 }
