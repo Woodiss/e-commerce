@@ -50,19 +50,12 @@ nav {
     padding: 15px 80px;
     z-index: 2;
     position: relative;
-    /* width: 100vw; */
 }
 
 nav .logo {
     display: flex;
     color: white;
     align-items: center;
-}
-
-nav .logo h1 {
-    /* font-family: "Madimi One", sans-serif;
-    letter-spacing: 2px;
-    font-weight: 100; */
 }
 
 nav .logo img {
@@ -84,7 +77,6 @@ nav .right-nav .cart {
     padding: 7px;
     background-color: var(--s-color);
     display: flex;
-    /* gap: 10px; */
     align-items: center;
     border-radius: 9999px;
 }
@@ -110,7 +102,6 @@ nav .right-nav .cart {
 .account img, .contact img, .cart img {
     width: 15px;
 }
-
 
 .contact .circle, .contact .chevron {
     display: flex;
@@ -265,13 +256,13 @@ footer ul li a:hover {
     display: flex;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
     .container {
-        width: 90%;
+        width: 80%;
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .container {
         width: 95%;
     }
@@ -339,7 +330,7 @@ footer ul li a:hover {
 
 /* price */
 .card .price {
-    width: 220px!important;
+    width: 220px;
     padding: 16px;
     /* padding-left: 60px; */
     display: flex;
@@ -666,7 +657,8 @@ input:focus, textarea:focus {
 .container-cart .table .table-body {
     display: grid;
     grid-template-columns: repeat(5, 1fr) 100px;
-    border: 1px solid #e1e1e1
+    border: 1px solid #e1e1e1;
+    background-color: #fff;
 }
 
 .td-img {
@@ -677,6 +669,11 @@ input:focus, textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 15px;
+}
+
+.container-cart .table .table-body .table-img {
+    padding: 0px;
 }
 
 .container-cart .table .table-body .table-img img{
@@ -732,6 +729,7 @@ input:focus, textarea:focus {
     font-size: 1.2rem;
 }
 */
+
 .container-cart .icons-cart {
     width: 20px;
     filter: invert(11%) sepia(62%) saturate(3354%) hue-rotate(216deg) brightness(90%) contrast(111%);
@@ -768,6 +766,28 @@ input:focus, textarea:focus {
     padding: 14px;
     white-space: nowrap;
     border-radius: 9999px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1800px) {
+    .container-cart {
+        flex-direction: column;
+    }
+
+    .container-cart .price-cart {
+        margin: 30px 0 0 0;
+        align-items: center;
+    }
+
+    .container-cart .price-cart a {
+        text-align: center;
+        width: fit-content;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
 }
 
 /* ========================= FIN PAGE PANIER ================================ */
@@ -835,6 +855,7 @@ input:focus, textarea:focus {
 .container-orders .table .content-orders .order{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    background: #fff;
 }
 
 .container-orders .table .order div {
@@ -857,10 +878,6 @@ input:focus, textarea:focus {
     border: 1px solid #e1e1e1
 }
 
-.order-active{
-    background: #d9eef4;
-}
-
 .all-details {
     height: 0px;
     overflow: hidden;
@@ -877,6 +894,11 @@ input:focus, textarea:focus {
 .all-details .detail {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    background-color: #fff;
+}
+
+.container-orders .table .content-orders .order-active{
+    background: #d9eef4;
 }
 
 .detail div {
