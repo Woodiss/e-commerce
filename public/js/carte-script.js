@@ -18,8 +18,6 @@ cardVoyages.forEach(function(cardVoyage) {
     let longitude = parseFloat(cardVoyage.getAttribute('data-long'));
 	let price = parseFloat(cardVoyage.getAttribute('data-price'));
 
-	console.log(latitude + " " + longitude + " " + price);
-
 	// création du marker
 	let customIcon = L.divIcon({
 	className: '',
