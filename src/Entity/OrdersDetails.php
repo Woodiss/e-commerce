@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\OrdersDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrdersDetailsRepository;
 
 #[ORM\Entity(repositoryClass: OrdersDetailsRepository::class)]
 class OrdersDetails
@@ -16,7 +16,7 @@ class OrdersDetails
     #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
     private ?Orders $orders = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(cascade: ['persist'])]
     private ?Voyage $voyages = null;
 
     #[ORM\Column]

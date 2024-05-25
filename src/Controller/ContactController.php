@@ -18,10 +18,12 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $contactFormData = $form->getData();
             $subject = 'Demande de contact sur votre site de ' . $contactFormData['email'];
             $content = $contactFormData['name'] . ' vous a envoyé le message suivant: ' . $contactFormData['message'] . 'concernant un problème de "' . $contactFormData['problem'] . '"';
             $mailer->sendEmail(subject: $subject, content: $content);
+            
             $this->addFlash('success', 'Votre message a été envoyé');
             return $this->redirectToRoute('app_voyage_index');
         }
