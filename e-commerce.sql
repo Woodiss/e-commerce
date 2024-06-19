@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 19 juin 2024 à 07:50
+-- Généré le : mer. 19 juin 2024 à 13:14
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -290,9 +290,11 @@ INSERT INTO `voyage_image` (`id`, `voyage_id`, `name`, `size`) VALUES
 (80, 19, 'paris4-coin-65f85be449306587015271.png', 269588),
 (81, 19, 'paris4-chambre2-65f85be449d66440271084.png', 279946),
 (82, 19, 'paris4-entre-65f85be44a65f928339821.png', 413790),
-(85, 17, 'paris2-cabane-exter-6672712f8afff901395378.png', 472856),
-(86, 17, 'paris2-cabane-chambre3-66522cb34a1eb711318449.png', 405524),
-(87, 17, 'paris2-cabane-toilet-66522cb34aea2875719757.png', 357422);
+(88, 17, 'paris2-cabane-exter.png', 472856),
+(89, 17, 'paris2-cabane-chambre1.png', 402824),
+(90, 17, 'paris2-cabane-chambre2-6672bc0abadeb892360901.png', 221528),
+(91, 17, 'paris2-cabane-chambre3-6672bc0abb9be484944528.png', 405524),
+(92, 17, 'paris2-cabane-toilet-6672bc0abc1e4100865444.png', 357422);
 
 --
 -- Index pour les tables déchargées
@@ -427,7 +429,7 @@ ALTER TABLE `voyage`
 -- AUTO_INCREMENT pour la table `voyage_image`
 --
 ALTER TABLE `voyage_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- Contraintes pour les tables déchargées
