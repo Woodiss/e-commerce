@@ -210,36 +210,97 @@ nav .right-nav .cart {
 
 
 /* ========================= DEBUT FOOTER ================================ */
-footer {
-    background-color: #333;
+footer > section {
     background-color: var(--p-color);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+    display: flex;
+    padding: 30px 350px;
+    display: flex;
+    justify-content: space-between;
 }
 
-footer p {
+footer > div {
+    background-color: var(--s-color);
+    padding: 25px;
+    color: white;
+    font-size: 1.3rem;
+}
+
+footer .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .logo img {
+    width: 100px;
+}
+
+footer .logo span {
+    color: white;
+    font-size: 1.5rem;
+}
+
+footer .reseaux,
+footer .pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .reseaux span,
+footer .pages span{
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
     margin-bottom: 10px;
 }
 
-footer ul {
-    list-style: none;
-    padding: 0;
-}
-
-footer ul li {
-    display: inline-block;
+footer .reseaux img {
+    width: 25px;
+    /* height: 25px; */
     margin-right: 10px;
 }
 
-footer ul li a {
-    color: #fff;
-    text-decoration: none;
+footer .reseaux img.invert {
+    filter: invert(100%);
 }
 
-footer ul li a:hover {
-    text-decoration: underline;
+footer .reseaux ul,
+footer .pages ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 5px;
+    text-align: left;
+    align-items: start;
 }
+
+footer .reseaux ul li a,
+footer .pages ul li a{
+    color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+footer > div p {
+    text-align: center;
+}
+
+@media screen and (max-width: 1500px) {
+    footer > section {
+        padding: 30px 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    footer > section {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+
 /* ========================= FIN FOOTER ================================ */
 
 
@@ -249,6 +310,13 @@ footer ul li a:hover {
     width: 60%;
     margin: 30px auto;
     flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container h3 {
+    text-align: center;
 }
 
 
@@ -563,6 +631,7 @@ footer ul li a:hover {
 /* ========================= LOGIN / REGISTER ================================ */
 
 .form {
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -571,6 +640,7 @@ footer ul li a:hover {
 
 .form form {
     background-color: white;
+    width: 100%;
     padding: 20px 50px;
     border-radius: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.07)
@@ -603,6 +673,11 @@ input:focus, textarea:focus {
     margin-left: 15px;
 }
 
+.checkbox a {
+    display: flex;
+    align-items: center;
+}
+
 .btn-form {
     padding: 7px;
     border: none;
@@ -626,11 +701,14 @@ input:focus, textarea:focus {
     text-wrap: wrap;
 }
 
+@media screen and (max-width: 500px) {
+    .form form {
+        padding: 20px;
+    }
+}
+
 /* ========================= FIN LOGIN / REGISTER ================================ */
 
-/* input[type="checkbox"].demo5:checked + label {
-    background-color: #00B7E8;
-} */
 
 
 /* ========================= DEBUT PAGE PANIER ================================ */
@@ -682,56 +760,6 @@ input:focus, textarea:focus {
     width: 100%;
 }
 
-/* .container-cart table {
-    border-collapse: collapse;
-}
-
-.container-cart table thead{
-    color: var(--grey);
-    font-size: .7rem;
-}
-
-.container-cart section.table, .container-cart section.table table {
-    width: 100%;
-}
-
-.container-cart section.table th, .container-cart section.table td{
-    border-bottom: 2px solid var(--grey);
-    padding: 0 8px;
-}
-
-.container-cart section.table thead tr th:nth-child(1) {
-    width: 150px;
-}
-
-.container-cart section.table tbody tr td {
-    padding: 0 8px;
-    text-align: center;
-    text-wrap: nowrap;
-}
-
-.container-cart section.table tbody tr td:nth-child(1) {
-    padding: 0;
-}
-
-.container-cart section.table tbody tr td:nth-child(2) {
-    font-size: .7rem;
-    font-weight: bold;
-}
-
-.container-cart .td-img {
-    display: flex;
-}
-
-.container-cart .td-img img {
-    height: 150px;
-}
-
-.container-cart .td-quantity {
-    font-size: 1.2rem;
-}
-*/
-
 .container-cart .icons-cart {
     width: 20px;
     filter: invert(11%) sepia(62%) saturate(3354%) hue-rotate(216deg) brightness(90%) contrast(111%);
@@ -768,6 +796,33 @@ input:focus, textarea:focus {
     padding: 14px;
     white-space: nowrap;
     border-radius: 9999px;
+    font-weight: bold;
+}
+
+.cart-empty {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+
+.cart-empty p {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.cart-empty p:nth-of-type(1){
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cart-empty a {
+    background-color: var(--p-color);
+    padding: 20px;
+    border-radius: var(--bd-r);
+    color: white;
     font-weight: bold;
 }
 
@@ -871,6 +926,7 @@ input:focus, textarea:focus {
 .container-orders {
     margin: 50px auto;
     max-width: 1200px;
+    width: 100%;
 }
 
 .container-orders .table .table-head {
@@ -1006,4 +1062,24 @@ input:focus, textarea:focus {
         justify-content: end;
         margin-right: 10px;
     }
+}
+
+/* ========================= FIN PAGE COMMANDE INDEX ================================ */
+
+
+
+
+/* ========================= DEBUT PAGE MENTION LEGAL ================================ */
+.container-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.container-legal > section h2 {
+    margin-bottom: 10px;
+}
+.container-legal > section p{
+    font-size: 1.2rem;
+
 }

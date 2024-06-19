@@ -16,7 +16,10 @@
             {{ form_row(registrationForm.phone_number) }}
             {{ form_row(registrationForm.plainPassword) }}
             <div class="checkbox">
-                {{ form_row(registrationForm.agreeTerms) }}
+                <a href="{{ path('app_legal_notice') }}">
+                    Acceptez les conditions
+                    {{ form_row(registrationForm.agreeTerms) }}
+                </a>
             </div>
 
             <button type="submit" class="btn-form">S'inscrire</button>

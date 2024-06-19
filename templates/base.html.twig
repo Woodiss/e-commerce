@@ -25,7 +25,7 @@
 				<nav>
 					<a href="{{ path('app_voyage_index') }}">
 						<div class="logo">
-							<img src="{{ asset('images/images_site/logov1.svg') }}" alt="">
+							<img src="{{ asset('images/images_site/logov1.svg') }}" alt="logo globebox">
 							<h2>GlobeBox.fr</h2>
 						</div>
 					</a>
@@ -33,7 +33,7 @@
 					<div class="right-nav">
 						<a href="{{ path('app_contact') }}" class="contact">
 							<div class="circle">
-								<img src="{{ asset('images/images_site/svg_icons/phone.svg') }}" alt="">
+								<img src="{{ asset('images/images_site/svg_icons/phone.svg') }}" alt="icone telephone">
 							</div>
 
 							<div class="text">
@@ -43,7 +43,7 @@
 
 						<a href="{{ path('cart_index') }}" class="cart">
 							<div class="circle">
-								<img src="{{ asset('images/images_site/svg_icons/cart-shopping.svg') }}" alt="">
+								<img src="{{ asset('images/images_site/svg_icons/cart-shopping.svg') }}" alt="icone panier">
 							</div>
 
 							<div class="text">
@@ -53,11 +53,11 @@
 
 						<div class="account">
 							<div class="circle">
-								<img src="{{ asset('images/images_site/svg_icons/user.svg') }}" alt="">
+								<img src="{{ asset('images/images_site/svg_icons/user.svg') }}" alt="icone utilisateur">
 							</div>
 
 							<div class="chevron">
-								<img src="{{ asset('images/images_site/svg_icons/chevron-down.svg') }}" alt="">
+								<img src="{{ asset('images/images_site/svg_icons/chevron-down.svg') }}" alt="icone chevron vers le bas">
 							</div>
 
 							<div class="dropdown none">
@@ -93,12 +93,37 @@
 
 			{% block footer %}
 				<footer>
-				<p>&copy; {{ "now"|date("Y") }} - GlobeBox.fr</p>
-					<ul>
-						<li><a href="#">Lien 1</a></li>
-						<li><a href="#">Lien 2</a></li>
-						<li><a href="#">Lien 3</a></li>
-					</ul>
+					<section>
+						<div class="logo">
+							<img src="{{ asset('images/images_site/logov1.svg') }}" alt="logo globebox">
+							<span>GlobeBox.fr</span>
+						</div>
+
+						<div class="reseaux">
+							<span>Réseaux</span>
+							<ul>
+								<li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><img src="{{ asset('images/images_site/logo_reseaux/youtube.png') }}" alt="icone youtube">Youtube</a></li>
+								<li><a href="https://www.snapchat.com/" target="_blank"><img src="{{ asset('images/images_site/logo_reseaux/snapchat.webp') }}" alt="icone snapchat" >Snapchat</a></li>
+								<li><a href="https://www.tiktok.com/login?lang=fr&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Dfr" target="_blank"><img src="{{ asset('images/images_site/logo_reseaux/tiktok.png') }}" alt="icone tiktok" class="invert">TikTok</a></li>
+								<li><a href="https://www.instagram.com/" target="_blank"><img src="{{ asset('images/images_site/logo_reseaux/instagram.png') }}" alt="icone instagram" class="invert">Instagram</a></li>
+							</ul>
+						</div>
+
+						<div class="pages">
+							<span>Navigations</span>
+							<ul>
+								<li><a href="{{ path('app_voyage_index') }}">Voyages</a></li>
+								<li><a href="{{ path('app_login') }}">Connexion</a></li>
+								<li><a href="{{ path('app_register') }}">Inscription</a></li>
+								<li><a href="{{ path('app_contact') }}">Contact</a></li>
+								<li><a href="{{ path('app_legal_notice') }}">Mention légales</a></li>
+							</ul>
+						</div>
+					</section>
+
+					<div>
+						<p>Copyright© GlobeBox.fr vente de voyages. Tous droits réservés. </p>
+					</div>
 				</footer>
 			{% endblock %}
 

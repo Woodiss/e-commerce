@@ -4,55 +4,65 @@
 
 {% block body %}
     <div class="container">
-    
-        <h3 style="text-align: center;">VOTRE PANIER</h3>
-        <div class="container-cart">
-            <section class="table">
-                <div class="table-head">
-                    <div>Désignation</div>
-                    <div>Prix /J</div>
-                    <div>Jour(s)</div>
-                    <div>Sous-total</div>
-                    <div><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt=""></div>
-                </div>
+        {% if data is not empty %}
+            <h3>VOTRE PANIER</h3>
+            <div class="container-cart">
+                <section class="table">
+                    <div class="table-head">
+                        <div>Désignation</div>
+                        <div>Prix /J</div>
+                        <div>Jour(s)</div>
+                        <div>Sous-total</div>
+                        <div><img class="icons" src="{{ asset('images/images_site/svg_icons/trash.svg') }}" alt="icone supprimer"></div>
+                    </div>
 
-                <div>
-                    {% for element in data %}
-                        <div class="table-body">
-                            <div class="table-img">
-                                <img src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
+                    <div>
+                        {% for element in data %}
+                            <div class="table-body">
+                                <div class="table-img">
+                                    <img src="{{ asset('images/voyages/' ~ element.voyage.getImages()[0].name) }}" alt="Voyage Image">
+                                </div>
+                                <div>
+                                    {{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}                  
+                                </div>
+                                <div>{{ element.voyage.price }} €</div>
+                                <div class="td-quantity">
+                                    <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
+                                    {{ element.quantity }}
+                                    <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
+                                </div>
+                                <div>
+                                    {{ element.quantity * element.voyage.price }} €            
+                                </div>
+                                <div>
+                                    <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
+                                        <img class="icons-cart" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="icone supprimer">
+                                    </a>
+                                </div>
                             </div>
-                            <div>
-                                {{ element.voyage.title }}, {{ element.voyage.city }}, {{ element.voyage.country }}                  
-                            </div>
-                            <div>{{ element.voyage.price }} €</div>
-                            <div class="td-quantity">
-                                <a href="{{ path('cart_remove', {'id': element.voyage.id}) }}">-</a>
-                                {{ element.quantity }}
-                                <a href="{{ path('cart_add', {'id': element.voyage.id}) }}">+</a>
-                            </div>
-                            <div>
-                                {{ element.quantity * element.voyage.price }} €            
-                            </div>
-                            <div>
-                                <a href="{{ path('cart_delete', {'id': element.voyage.id}) }}">
-                                    <img class="icons-cart" src="{{ asset('images/images_site/svg_icons/cross.svg') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    {# {% else %} #}
-                    {% endfor %}
-                </div>
-                
-                </table>
-            </section>
-            <section class="price-cart">
-                <p>TOTAL TTC</p>
-                <p class="total-price">{{ total }} €</p>
-                <a href="{{ path('orders_app_order_new') }}">PASSER COMMANDE</a>
+                        {# {% else %} #}
+                        {% endfor %}
+                    </div>
+                    
+                    </table>
+                </section>
+                <section class="price-cart">
+                    <p>TOTAL TTC</p>
+                    <p class="total-price">{{ total }} €</p>
+                    <a href="{{ path('orders_app_order_new') }}">PASSER COMMANDE</a>
 
-            </section>
-        </div>
+                </section>
+            </div>
+            
+        {% else %}
+            <div class="cart-empty">
+                <h3>Votre panier est vide</h3>
+                <p>:-(</p>
+                <p>en manque d'inspiration ?</p>
+                <a href="{{ path('app_voyage_index') }}">Consulté les nos voyages</a>
+            </div>
+            
+        {% endif %}
     
     </div>
 {% endblock %}
